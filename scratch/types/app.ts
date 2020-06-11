@@ -7,7 +7,10 @@ const number2 = 3.14159;
 const result = add(number1, number2);
 console.log(result);
 
-const person = {
+const person: {
+    name: string;
+    age: number;
+} = {
   name: "Mike",
   age: 37,
 };
