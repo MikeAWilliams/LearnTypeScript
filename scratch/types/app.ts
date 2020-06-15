@@ -7,12 +7,14 @@ const number2 = 3.14159;
 const result = add(number1, number2);
 console.log(result);
 
-const person: {
-    name: string;
-    age: number;
-} = {
+enum Role { admin, author, reader};
+
+const person = {
   name: "Mike",
   age: 37,
+  role: Role.reader
 };
 
 console.log(person);
+
+console.log(person.role === Role.author)
