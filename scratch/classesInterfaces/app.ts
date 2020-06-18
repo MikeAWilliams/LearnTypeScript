@@ -1,10 +1,21 @@
 class Department {
-    name: string;
+    private employees: string[] = [];
 
-    constructor(n: string) {
-        this.name = n;
+    constructor(public name: string) {
+    }
+
+    print(this: Department){
+        console.log(`${this.name} department`);
+        console.log(`Has ${this.employees.length} employees`);
+        console.log(this.employees)
+    }
+
+    addEmployee(this: Department, employee: string){
+        this.employees.push(employee);
     }
 }
 
-const md = new Department ("Math");
-console.log(md);
+let md = new Department ("Math");
+md.addEmployee('stan');
+md.addEmployee('jason');
+md.print();
