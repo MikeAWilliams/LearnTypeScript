@@ -19,3 +19,16 @@ let md = new Department ("Math");
 md.addEmployee('stan');
 md.addEmployee('jason');
 md.print();
+
+abstract class Logger {
+    abstract log(toLog: string): void;
+}
+
+class ConsoleLogger extends Logger {
+    log(toLog: string) {
+        console.log(toLog);
+    }
+}
+
+let myLogger = new ConsoleLogger();
+myLogger.log("Stuff to log");
