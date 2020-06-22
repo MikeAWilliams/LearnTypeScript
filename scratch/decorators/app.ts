@@ -59,7 +59,6 @@ function validate(obj: any) {
             if(!isValid) {
                 return false;
             }
-
         }
     }
     return true;
