@@ -50,18 +50,19 @@ function validate(obj: any) {
         for(const validator of objectValidatorConfig[prop]){
             switch(validator){
                 case 'required':
-                    isValid = !!obj[prop];
+                    isValid = isValid && !!obj[prop];
+                    break;
                 case 'positive':
-                    isValid = obj[prop] > 0;
+                    isValid = isValid && obj[prop] > 0;
+                    break;
             }
             if(!isValid) {
                 return false;
             }
 
         }
-        return true;
     }
-
+    return true;
 }
 
 class Course {
