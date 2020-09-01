@@ -1,6 +1,10 @@
-install
+commands I used to get started with a bare install
    yarn add --dev jest typescript
    yarn add --dev ts-jest @types/jest
    yarn ts-jest config:init
+
+command I used to initilize a new clone from this
+   npm i
+
 run tests
    yarn jest
