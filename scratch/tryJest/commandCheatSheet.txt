@@ -1,0 +1,6 @@
+install
+   yarn add --dev jest typescript
+   yarn add --dev ts-jest @types/jest
+   yarn ts-jest config:init
+run tests
+   yarn jest
