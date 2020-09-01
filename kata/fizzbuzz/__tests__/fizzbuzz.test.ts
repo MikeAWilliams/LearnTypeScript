@@ -14,6 +14,13 @@ test('divisible by 5 returns Buzz', () => {
   expect(fizzbuzz(25)).toBe("Buzz");
 });
 
+test('divisible by 15 returns Buzz', () => {
+  expect(fizzbuzz(15)).toBe("FizzBuzz");
+  expect(fizzbuzz(30)).toBe("FizzBuzz");
+  expect(fizzbuzz(45)).toBe("FizzBuzz");
+  expect(fizzbuzz(60)).toBe("FizzBuzz");
+});
+
 test('not divisible by 3, 5, or 15 returns the number', () => {
   expect(fizzbuzz(1)).toBe("1");
   expect(fizzbuzz(2)).toBe("2");
