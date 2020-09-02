@@ -8,3 +8,4 @@ command I used to initilize a new clone from this
 
 run tests
    yarn jest
+   yarn jest --runInBand --forceExit --watchAll
