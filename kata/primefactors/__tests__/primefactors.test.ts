@@ -27,3 +27,9 @@ test('primefactors of 8 is 2,2,2', () => {
 test('primefactors of 9 is 3,3', () => {
    expect(primefactors(9)).toEqual([3,3]);
 });
+
+test('primefactors of arbitrary numbers', () => {
+   expect(primefactors(125)).toEqual([5,5,5]);
+   expect(primefactors(12754)).toEqual([2,7,911]);
+   expect(primefactors(24225)).toEqual([3,5,5,17,19]);
+});
