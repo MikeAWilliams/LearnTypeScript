@@ -1,11 +1,10 @@
 export function primefactors(num: number) {
    let result: number[] = [];
-   while(num % 2 == 0){
-      result.push(2);
-      num /= 2;
-   }
-   if(num > 1) {
-      result.push(num);
+   for(var divisor = 2; num > 1; divisor++){
+      while(num % divisor == 0){
+         result.push(divisor);
+         num /= divisor;
+      }
    }
    return result;
 }

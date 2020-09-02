@@ -23,3 +23,7 @@ test('primefactors of 6 is 2,3', () => {
 test('primefactors of 8 is 2,2,2', () => {
    expect(primefactors(8)).toEqual([2,2,2]);
 });
+
+test('primefactors of 9 is 3,3', () => {
+   expect(primefactors(9)).toEqual([3,3]);
+});
