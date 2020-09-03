@@ -1,6 +1,6 @@
 import {Game} from "../src";
 
-describe('Bowling Game Test', () => {
+describe('TicTacToe Game Test', () => {
   let game: Game;
   beforeEach(() => {
     game = new Game();
@@ -63,5 +63,79 @@ it('x wins first column', () => {
    game.takeTurn(xCol, 2);
    expect(game.isOver()).toBeTruthy();
    expect(game.getWinner()).toBe("X");
+});
+
+it('x wins second column', () => {
+   const xCol = 1;
+   const oCol = 0;
+   game.takeTurn(xCol, 0);
+   game.takeTurn(oCol, 0);
+   game.takeTurn(xCol, 1);
+   game.takeTurn(oCol, 1);
+   game.takeTurn(xCol, 2);
+   expect(game.isOver()).toBeTruthy();
+   expect(game.getWinner()).toBe("X");
+});
+
+it('x wins third column', () => {
+   const xCol = 2;
+   const oCol = 0;
+   game.takeTurn(xCol, 0);
+   game.takeTurn(oCol, 0);
+   game.takeTurn(xCol, 1);
+   game.takeTurn(oCol, 1);
+   game.takeTurn(xCol, 2);
+   expect(game.isOver()).toBeTruthy();
+   expect(game.getWinner()).toBe("X");
+});
+
+it('x wins diagonal 00 to 22', () => {
+   game.takeTurn(0, 0);
+   game.takeTurn(2, 0);
+   game.takeTurn(1, 1);
+   game.takeTurn(2, 1);
+   game.takeTurn(2, 2);
+   expect(game.isOver()).toBeTruthy();
+   expect(game.getWinner()).toBe("X");
+});
+
+it('x wins diagonal 20 to 02', () => {
+   game.takeTurn(2, 0);
+   game.takeTurn(1, 0);
+   game.takeTurn(1, 1);
+   game.takeTurn(2, 1);
+   game.takeTurn(0, 2);
+   expect(game.isOver()).toBeTruthy();
+   expect(game.getWinner()).toBe("X");
+});
+
+it('y wins diagonal 20 to 02', () => {
+   game.takeTurn(2, 2);
+   game.takeTurn(2, 0);
+   game.takeTurn(2, 1);
+   game.takeTurn(1, 1);
+   game.takeTurn(1, 0);
+   game.takeTurn(0, 2);
+   expect(game.isOver()).toBeTruthy();
+   expect(game.getWinner()).toBe("O");
+});
+
+it('invalid moves throw', () => {
+   game.takeTurn(2,2);
+   expect(()=>{game.takeTurn(2, 2)}).toThrow('Invalid Move');
+
+   expect(()=>{game.takeTurn(3, 2)}).toThrow('Invalid Move');
+   expect(()=>{game.takeTurn(2, 3)}).toThrow('Invalid Move');
+   expect(()=>{game.takeTurn(-1, 2)}).toThrow('Invalid Move');
+   expect(()=>{game.takeTurn(0, -1)}).toThrow('Invalid Move');
+});
+
+it('taking a turn when the game is over throws', () => {
+   game.takeTurn(2, 0);
+   game.takeTurn(1, 0);
+   game.takeTurn(1, 1);
+   game.takeTurn(2, 1);
+   game.takeTurn(0, 2);
+   expect(()=>{game.takeTurn(2, 2)}).toThrow('Invalid Move');
 });
 });

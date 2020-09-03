@@ -3,7 +3,6 @@ export default interface IGame {
   getWinner(): string;
   getPlayerTakingThisTurn(): string;
   takeTurn(x:number, y:number):void;
-  getBoardState(): string; 
 }
 
 export class Game implements IGame {
@@ -27,21 +26,25 @@ export class Game implements IGame {
   }
 
   takeTurn(x:number, y:number):void {
+     this.throwIfMoveIsInvalid(x,y);
      const player = this.getPlayerTakingThisTurn();
      this.board[y][x] = player;
      this.isXturn = !this.isXturn;
      this.updateWinner(player);
   }
 
-  getBoardState(): string {
-     let result = "";
-     for(const row of this.board){
-        for(const position of row) {
-           result += position;
-        }
-        result += "\n";
+  private throwIfMoveIsInvalid(x:number, y:number){
+     const message = 'Invalid Move';
+     if(this.isOver()) {
+        throw new Error(message);
      }
-     return result;
+     
+     if(x > 2 || y > 2 || x <0 || y < 0){
+         throw new Error(message);
+     }
+      if (this.board[y][x] != " "){
+         throw new Error(message);
+      }
   }
 
   private updateWinner(player: string): void {
@@ -51,7 +54,7 @@ export class Game implements IGame {
   }
 
   private playerWon(player:string): boolean {
-      return this.playerWonHorizontal(player) || this.playerWonVertical(player);
+      return this.playerWonHorizontal(player) || this.playerWonVertical(player) || this.playerWonDiagonal(player);
   }
 
   private playerWonVertical(player: string): boolean {
@@ -60,6 +63,22 @@ export class Game implements IGame {
 
   private playerWonHorizontal(player:string): boolean {
      return this.playerWonInRow(player, 0) || this.playerWonInRow(player, 1) || this.playerWonInRow(player, 2);
+  }
+
+  private playerWonDiagonal(player:string): boolean {
+     return this.playerWonDiagonal0022(player) || this.playerWonDiagonal2002(player);
+  }
+
+  private playerWonDiagonal0022(player:string): boolean {
+     return this.playerHoldsPosition(player, 0, 0) && 
+      this.playerHoldsPosition(player, 1, 1) && 
+      this.playerHoldsPosition(player, 2, 2);
+  }
+
+  private playerWonDiagonal2002(player:string): boolean {
+     return this.playerHoldsPosition(player, 2, 0) && 
+      this.playerHoldsPosition(player, 1, 1) && 
+      this.playerHoldsPosition(player, 0, 2);
   }
 
   private playerWonInCol(player:string, colIndex:number):boolean {
