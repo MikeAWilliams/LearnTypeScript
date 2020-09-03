@@ -8,15 +8,6 @@ function greetSingle(name: string):string {
    return "Hello, " + name + ".";
 }
 
-function isAllCaps(names: Array<string>):boolean {
-   for(const name of names){
-      if(name.toUpperCase() != name){
-         return false;
-      }
-   }
-   return true;
-}
-
 function greetMultiYell(names: Array<string>):string {
    if(2 == names.length) {
       return "HELLO " + names[0] + " AND " + names[1] + "!";
@@ -30,10 +21,6 @@ function greetMultiYell(names: Array<string>):string {
 }
 
 function greetMulti(names: Array<string>):string {
-   if(isAllCaps(names)){
-      return greetMultiYell(names);
-   }
-
    if(2 == names.length) {
       return "Hello, " + names[0] + " and " + names[1] + ".";
    }
