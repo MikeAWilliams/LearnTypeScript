@@ -1,11 +1,14 @@
 export default interface IGame {
   isOver(): boolean;
   getWinner(): string;
-  getPlayerTakingNextTurn(): string;
+  getPlayerTakingThisTurn(): string;
   takeTurn(x:number, y:number):void;
+  getBoardState(): Array<Array<string>>;
 }
 
 export class Game implements IGame {
+   private board: Array<Array<string>> = [[" ", " ", " "],[" ", " ", " "], [" ", " ", " "] ];
+   private isXturn: boolean = true;
   isOver(): boolean {
       return false;
   }
@@ -14,12 +17,20 @@ export class Game implements IGame {
      throw new Error('Not Implmemented');
   }
 
-  getPlayerTakingNextTurn(): string {
-     return "X";
+  getPlayerTakingThisTurn(): string {
+     if(this.isXturn) {
+      return "X";
+     }
+     return "O"
   }
 
   takeTurn(x:number, y:number):void {
-     throw new Error('Not Implmemented');
+     this.board[y][x] = this.getPlayerTakingThisTurn();
+     this.isXturn = !this.isXturn;
+  }
+
+  getBoardState(): Array<Array<string>> {
+     return Array<Array<string>>();
   }
 
 }
