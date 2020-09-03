@@ -9,3 +9,8 @@ test('hello my friend', () => {
    expect(greet("")).toEqual("Hello, my friend.");
    expect(greet(null)).toEqual("Hello, my friend.");
 });
+
+test('shouting', () => {
+   expect(greet("BOB")).toEqual("HELLO BOB!");
+   expect(greet("SUSAN")).toEqual("HELLO SUSAN!");
+});
