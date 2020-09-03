@@ -12,5 +12,13 @@ export function greet(names: Array<string>):string {
    if(1 == names.length) {
       return greetSingle(names[0]);
    }
-   return "Hello, " + names[0] + " and " + names[1] + ".";
+   if(2 == names.length) {
+      return "Hello, " + names[0] + " and " + names[1] + ".";
+   }
+   let result = "Hello, ";
+   for(var index = 0; index < names.length - 1; index++) {
+      result += names[index] + ", ";
+   }
+   result += "and " + names[names.length - 1] + ".";
+   return result;
 }
