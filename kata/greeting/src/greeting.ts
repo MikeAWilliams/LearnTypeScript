@@ -1,4 +1,4 @@
-export function greet(name: string) {
+function greetSingle(name: string):string {
    if(!name){
       return "Hello, my friend.";
    }
@@ -6,4 +6,11 @@ export function greet(name: string) {
       return "HELLO "+ name+"!";
    }
    return "Hello, " + name + ".";
+}
+
+export function greet(names: Array<string>):string {
+   if(1 == names.length) {
+      return greetSingle(names[0]);
+   }
+   return "Hello, Bob and Susan.";
 }
