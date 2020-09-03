@@ -12,5 +12,5 @@ export function greet(names: Array<string>):string {
    if(1 == names.length) {
       return greetSingle(names[0]);
    }
-   return "Hello, Bob and Susan.";
+   return "Hello, " + names[0] + " and " + names[1] + ".";
 }

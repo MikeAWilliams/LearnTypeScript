@@ -16,5 +16,6 @@ test('shouting', () => {
 });
 
 test('two names', () => {
+   expect(greet(["Jill", "Jane"])).toEqual("Hello, Jill and Jane.");
    expect(greet(["Bob", "Susan"])).toEqual("Hello, Bob and Susan.");
 });
