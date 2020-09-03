@@ -8,13 +8,7 @@ function greetSingle(name: string):string {
    return "Hello, " + name + ".";
 }
 
-export function greet(names: Array<string>):string {
-   if(!names || 0 == names.length) {
-      return greetSingle(null);
-   }
-   if(1 == names.length) {
-      return greetSingle(names[0]);
-   }
+function greetMulti(names: Array<string>):string {
    if(2 == names.length) {
       return "Hello, " + names[0] + " and " + names[1] + ".";
    }
@@ -24,4 +18,14 @@ export function greet(names: Array<string>):string {
    }
    result += "and " + names[names.length - 1] + ".";
    return result;
+}
+
+export function greet(names: Array<string>):string {
+   if(!names || 0 == names.length) {
+      return greetSingle(null);
+   }
+   if(1 == names.length) {
+      return greetSingle(names[0]);
+   }
+   return greetMulti(names);
 }
