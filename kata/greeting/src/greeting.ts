@@ -9,6 +9,9 @@ function greetSingle(name: string):string {
 }
 
 export function greet(names: Array<string>):string {
+   if(!names || 0 == names.length) {
+      return greetSingle(null);
+   }
    if(1 == names.length) {
       return greetSingle(names[0]);
    }

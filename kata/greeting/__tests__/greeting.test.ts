@@ -24,3 +24,8 @@ test('more than two names', () => {
    expect(greet(["Jill", "Jane", "Susan"])).toEqual("Hello, Jill, Jane, and Susan.");
    expect(greet(["Jill", "Jane", "Susan", "Bob"])).toEqual("Hello, Jill, Jane, Susan, and Bob.");
 });
+
+test('empty or null list', () => {
+   expect(greet([])).toEqual("Hello, my friend.");
+   expect(greet(null)).toEqual("Hello, my friend.");
+});
