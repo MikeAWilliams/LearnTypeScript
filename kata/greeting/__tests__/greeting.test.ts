@@ -1,5 +1,6 @@
 import {greet} from "../src";
 
-test('hello bob', () => {
+test('hello name', () => {
    expect(greet("Bob")).toEqual("Hello, Bob.");
+   expect(greet("Susan")).toEqual("Hello, Susan.");
 });
