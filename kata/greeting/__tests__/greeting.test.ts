@@ -1,4 +1,4 @@
-import {greet} from "../src";
+import {greet, isAllCaps} from "../src";
 
 test('hello name', () => {
    expect(greet(["Bob"])).toEqual("Hello, Bob.");
@@ -28,4 +28,14 @@ test('more than two names', () => {
 test('empty or null list', () => {
    expect(greet([])).toEqual("Hello, my friend.");
    expect(greet(null)).toEqual("Hello, my friend.");
+});
+
+test('all caps in list', () => {
+   expect(greet(["BRIAN", "MAX"])).toEqual("HELLO BRIAN AND MAX!");
+   expect(greet(["AMY", "BRIAN", "MAX"])).toEqual("HELLO AMY, BRIAN, AND MAX!");
+});
+
+test('all caps in list', () => {
+   expect(greet(["Amy", "BRIAN", "Bob", "MAX"])).toEqual("Hello, Amy and Bob. AND HELLO BRIAN AND MAX!");
+   expect(greet(["AMY", "BRIAN", "Bob", "MAX"])).toEqual("Hello, Bob. AND HELLO AMY, BRIAN, AND MAX!");
 });
