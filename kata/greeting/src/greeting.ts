@@ -59,6 +59,7 @@ function splitCapsNames(names: Array<string>):Array<Array<string>> {
    return [lower, upper];
 }
 
+// I hate this implementation but am tired of working on this kata
 export function greet(names: Array<string>):string {
    if(!names || 0 == names.length) {
       return greetSingle(null);
