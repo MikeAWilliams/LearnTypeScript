@@ -39,14 +39,13 @@ export class Game implements IGame {
   }
 
   private moveIsInvalid(x:number, y:number): boolean{
-     const message = 'Invalid Move';
-     if(this.isOver()) {
-        return true;
-     }
-     
-     if(x > 2 || y > 2 || x <0 || y < 0){
-        return true;
-     }
+      const message = 'Invalid Move';
+      if(this.isOver()) {
+         return true;
+      }
+      if(x > 2 || y > 2 || x <0 || y < 0){
+         return true;
+      }
       if (this.board[y][x] != " "){
          return true;
       }
