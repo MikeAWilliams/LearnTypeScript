@@ -2,11 +2,12 @@ export default interface IGame {
   isOver(): boolean;
   getWinner(): string;
   getPlayerTakingThisTurn(): string;
-  takeTurn(x:number, y:number):void;
+  takeTurn(x:number, y:number): boolean;
+  getGameState(): string[][];
 }
 
 export class Game implements IGame {
-   private board: Array<Array<string>> = [[" ", " ", " "],[" ", " ", " "], [" ", " ", " "] ];
+   private board: string[][] = [[" ", " ", " "],[" ", " ", " "], [" ", " ", " "] ];
    private isXturn: boolean = true;
    private winner: string = null;
 
@@ -25,26 +26,31 @@ export class Game implements IGame {
      return "O"
   }
 
-  takeTurn(x:number, y:number):void {
-     this.throwIfMoveIsInvalid(x,y);
+  takeTurn(x:number, y:number):boolean {
+     if(this.moveIsInvalid(x,y)) {
+        return false;
+     }
+
      const player = this.getPlayerTakingThisTurn();
      this.board[y][x] = player;
      this.isXturn = !this.isXturn;
      this.updateWinner(player);
+     return true;
   }
 
-  private throwIfMoveIsInvalid(x:number, y:number){
+  private moveIsInvalid(x:number, y:number): boolean{
      const message = 'Invalid Move';
      if(this.isOver()) {
-        throw new Error(message);
+        return true;
      }
      
      if(x > 2 || y > 2 || x <0 || y < 0){
-         throw new Error(message);
+        return true;
      }
       if (this.board[y][x] != " "){
-         throw new Error(message);
+         return true;
       }
+      return false;
   }
 
   private updateWinner(player: string): void {

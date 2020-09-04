@@ -122,12 +122,12 @@ it('y wins diagonal 20 to 02', () => {
 
 it('invalid moves throw', () => {
    game.takeTurn(2,2);
-   expect(()=>{game.takeTurn(2, 2)}).toThrow('Invalid Move');
+   expect(game.takeTurn(2, 2)).toBeFalsy();
 
-   expect(()=>{game.takeTurn(3, 2)}).toThrow('Invalid Move');
-   expect(()=>{game.takeTurn(2, 3)}).toThrow('Invalid Move');
-   expect(()=>{game.takeTurn(-1, 2)}).toThrow('Invalid Move');
-   expect(()=>{game.takeTurn(0, -1)}).toThrow('Invalid Move');
+   expect(game.takeTurn(3, 2)).toBeFalsy();
+   expect(game.takeTurn(2, 3)).toBeFalsy();
+   expect(game.takeTurn(-1, 2)).toBeFalsy();
+   expect(game.takeTurn(0, -1)).toBeFalsy();
 });
 
 it('taking a turn when the game is over throws', () => {
@@ -136,6 +136,6 @@ it('taking a turn when the game is over throws', () => {
    game.takeTurn(1, 1);
    game.takeTurn(2, 1);
    game.takeTurn(0, 2);
-   expect(()=>{game.takeTurn(2, 2)}).toThrow('Invalid Move');
+   expect(game.takeTurn(0, -1)).toBeFalsy();
 });
 });
