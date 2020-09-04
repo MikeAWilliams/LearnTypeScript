@@ -11,32 +11,36 @@ export class Game implements IGame {
    private isXturn: boolean = true;
    private winner: string = null;
 
-  isOver(): boolean {
+   getGameState(): string[][] {
+      return this.board;
+   }
+
+   isOver(): boolean {
       return null != this.winner;
-  }
+   }
 
-  getWinner(): string{
-     return this.winner;
-  }
+   getWinner(): string{
+      return this.winner;
+   }
 
-  getPlayerTakingThisTurn(): string {
-     if(this.isXturn) {
-      return "X";
-     }
-     return "O"
-  }
+   getPlayerTakingThisTurn(): string {
+      if(this.isXturn) {
+         return "X";
+      }
+      return "O"
+   }
 
-  takeTurn(x:number, y:number):boolean {
-     if(this.moveIsInvalid(x,y)) {
-        return false;
-     }
+   takeTurn(x:number, y:number):boolean {
+      if(this.moveIsInvalid(x,y)) {
+         return false;
+      }
 
-     const player = this.getPlayerTakingThisTurn();
-     this.board[y][x] = player;
-     this.isXturn = !this.isXturn;
-     this.updateWinner(player);
-     return true;
-  }
+      const player = this.getPlayerTakingThisTurn();
+      this.board[y][x] = player;
+      this.isXturn = !this.isXturn;
+      this.updateWinner(player);
+      return true;
+   }
 
   private moveIsInvalid(x:number, y:number): boolean{
       const message = 'Invalid Move';
@@ -56,6 +60,20 @@ export class Game implements IGame {
       if(this.playerWon(player)){
          this.winner = player;
       }
+      if(this.boardIsFull()) {
+         this.winner = "draw";
+      }
+  }
+
+  private boardIsFull(): boolean {
+     for(const row of this.board) {
+        for(const space of row){
+            if(" " == space){
+               return false;
+            }
+        }
+     }
+     return true;
   }
 
   private playerWon(player:string): boolean {
