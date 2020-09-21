@@ -36,10 +36,29 @@ class ProjectInput {
         this.attach();
     }
 
+    private gatherUserInput(): [string, string, number] | void {
+        const title = this.titleInputElement.value;
+        const description = this.descriptionInputElement.value;
+        const people = this.peopleInputElement.value;
+
+        if(title.trim().length === 0 || description.trim().length === 0 || people.trim().length == 0){
+            alert('Invalid input, please try again!');
+            return;
+        }
+
+
+        return [title, description, parseInt(people)];
+    }
+
     @autobind
     private submitHandler(event:Event) {
        event.preventDefault();
-       console.log(this.titleInputElement.value);
+       const input = this.gatherUserInput();
+       if(!Array.isArray(input)){
+           return;
+       }
+       const [title, description, people] = input;
+       console.log(title, description, people);
     }
 
     private configure() {
