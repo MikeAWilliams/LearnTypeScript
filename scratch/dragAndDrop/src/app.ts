@@ -36,6 +36,12 @@ class ProjectInput {
         this.attach();
     }
 
+    private clear() {
+        this.titleInputElement.value = "";
+        this.descriptionInputElement.value = "";
+        this.peopleInputElement.value = "";
+    }
+
     private gatherUserInput(): [string, string, number] | void {
         const title = this.titleInputElement.value;
         const description = this.descriptionInputElement.value;
@@ -59,6 +65,7 @@ class ProjectInput {
        }
        const [title, description, people] = input;
        console.log(title, description, people);
+       this.clear();
     }
 
     private configure() {
